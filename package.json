@@ -7,7 +7,6 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc && nodemon ."
   },
   "repository": "https://github.com/andrewli06/org.thisisrc.ribbon.git",
@@ -15,8 +14,10 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.21",
+    "@types/nodemailer": "^6.4.4",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
     "nodemon": "^2.0.15",
@@ -27,6 +28,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "mongodb": "^4.4.1"
+    "mongodb": "^4.4.1",
+    "nodemailer": "^6.7.2"
   }
 }

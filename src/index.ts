@@ -2,14 +2,16 @@ import express from "express";
 import dotenv from "dotenv";
 import appRoutes from "./routes/app";
 import conn from "./db/conn";
+import cors from "cors";
 
 dotenv.config();
 const dbo = conn;
 const app = express();
-const port = process.env.PORT || 25565;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(appRoutes);
+app.use(cors());
 
 // get driver connection
 

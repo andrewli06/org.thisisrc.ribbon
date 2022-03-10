@@ -1,4 +1,4 @@
-{ // why is there an error here?
+{
   "compilerOptions": {
       "module": "commonjs",
       "esModuleInterop": true,
@@ -12,11 +12,11 @@
       "importHelpers": true,
       "strict": true,
       "paths": {
-          "*": [
-              "node_modules/*"
-          ]
+          "*": ["node_modules/*"],
+          "tslib": ["node_modules/tslib"]
       }
   },
+  
   "include": [
       "src/**/*"
   ]
