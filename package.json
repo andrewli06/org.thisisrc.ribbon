@@ -1,0 +1,19 @@
+{
+  "name": "org.thisisrc.ribbon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/andrewli06/org.thisisrc.ribbon.git",
+  "author": "Andrew Li <54134293+andrewleaf22@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.10.0",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1"
+  }
+}
