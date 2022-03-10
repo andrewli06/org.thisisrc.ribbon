@@ -55,18 +55,6 @@ router.route("/schools/:code").get((req: Request, res: Response) => {
 });
 
 // students
-const getSchool = async (code: string) => {
-    const dbConnect = dbo.getDb();
-
-    const query = { code };
-    dbConnect
-    .collection("schools")
-    .findOne(query, (err: Error, result: Response) => {
-        if (err) throw err;
-        return result;
-    });
-}
-
 router.route("/students/add").post(async (req: Request, res: Response) => {
     const dbConnect = dbo.getDb();
 
@@ -85,7 +73,7 @@ router.route("/students/add").post(async (req: Request, res: Response) => {
         school: req.body.school
     }
 
-    dbConnect.collection("schools").insertOne(student, (err: Error, resp: Response) => {
+    dbConnect.collection("students").insertOne(student, (err: Error, resp: Response) => {
         if (err) throw err;
         res.json({response: resp});
     });
