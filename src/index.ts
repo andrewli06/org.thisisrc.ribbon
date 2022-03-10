@@ -1,21 +1,19 @@
 import express from "express";
 import dotenv from "dotenv";
+import appRoutes from "./routes/app";
+import conn from "./db/conn";
 
 dotenv.config();
-const dbo = require("./db/conn");
+const dbo = conn;
 const app = express();
 const port = process.env.PORT || 25565;
 
 app.use(express.json());
-app.use(require("./routes/app"));
+app.use(appRoutes);
 
 // get driver connection
- 
+
 app.listen(port, () => {
   // perform a database connection when server starts
-  dbo.connectToServer(function (err: Error) {
-    if (err) console.error(err);
-  });
-
-  console.log(`Server is running on port: ${port}`);
+  dbo.connectToServer();
 });

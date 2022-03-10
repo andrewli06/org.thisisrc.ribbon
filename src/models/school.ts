@@ -9,7 +9,7 @@ export default class School {
         public code: string, // school code
         public count: number, // amount of registrations under this school
 	    public capacity: number, // defaults to 10. schools must email for more.
-	    public students?: Array<Student>, // list of students registering under this school
+	    public students?: Student[], // list of students registering under this school
         public id?: ObjectId
     ) {}
 }

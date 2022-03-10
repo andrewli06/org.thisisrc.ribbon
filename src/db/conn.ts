@@ -2,24 +2,23 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
 
-const cxn_uri: string = process.env.MONGO || "";
-const client = new MongoClient(cxn_uri);
+const CONN_URI: string = process.env.MONGO || "";
+const client = new MongoClient(CONN_URI);
 let _db: any;
- 
-module.exports = {
-  connectToServer: function (callback: any) {
-    client.connect(function (err, db) {
+
+export default {
+  connectToServer () {
+    client.connect((err, db) => {
       // Verify we got a good "db" object
       if (db)
       {
         _db = db.db("thisisrc");
-        console.log("Successfully connected to MongoDB."); 
       }
-      return callback(err);
-         });
+      return 1;
+    });
   },
- 
-  getDb: function () {
+
+  getDb () {
     return _db;
   },
 };
