@@ -1,4 +1,4 @@
-import express, { Request, response, Response } from "express";
+import express, { Request, Response } from "express";
 import Student from "../models/student"
 import School from "../models/school"
 import Person from "../models/person"
