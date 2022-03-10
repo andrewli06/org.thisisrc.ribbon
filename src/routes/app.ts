@@ -30,8 +30,8 @@ router.route("/schools/add").post((req: Request, res: Response) => {
 
     const school: School = {
         name: req.body.name,
-        contact,
-        code,
+        contact: contact,
+        code: code,
         count: 0,
         capacity: 10,
         students: []
