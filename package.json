@@ -1,18 +1,31 @@
 {
   "name": "org.thisisrc.ribbon",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && nodemon ."
+  },
   "repository": "https://github.com/andrewli06/org.thisisrc.ribbon.git",
   "author": "Andrew Li <54134293+andrewleaf22@users.noreply.github.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/node": "^17.0.21",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
+    "nodemon": "^2.0.15",
+    "tslib": "^2.3.1",
+    "tslint": "^6.1.3",
     "typescript": "^4.6.2"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongodb": "^4.4.1"
   }
