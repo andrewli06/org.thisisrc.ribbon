@@ -79,16 +79,5 @@ router.route("/students/add").post(async (req: Request, res: Response) => {
     });
 });
 
-router.route("/students/:id").get((req: Request, res: Response) => {
-    const dbConnect = dbo.getDb();
-    const query = { code: req.params.code };
-    dbConnect
-        .collection("students")
-        .findOne(query, (err: Error, result: Response) => {
-            if (err) throw err;
-            res.json(result);
-    });
-});
-
 module.exports = router;
 export default router;
