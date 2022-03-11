@@ -10,7 +10,7 @@
     "dev": "tsc && nodemon ."
   },
   "repository": "https://github.com/andrewli06/org.thisisrc.ribbon.git",
-  "author": "Andrew Li <54134293+andrewleaf22@users.noreply.github.com>",
+  "author": "Andrew Li <andrewli06@icloud.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
