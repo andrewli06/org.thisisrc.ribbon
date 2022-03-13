@@ -3,6 +3,7 @@ import Student from "../models/student";
 import School from "../models/school";
 import Person from "../models/person";
 import conn from "../db/conn";
+import { sendRegistrationEmail, sendSchoolReceipt, sendSchoolCodeEmail } from "../email";
 
 const router = express.Router();
 const dbo = conn;
@@ -14,6 +15,7 @@ const genCode = () => {
 }
 
 router.route("/api/test").get((req: Request, res: Response) => {
+    sendRegistrationEmail(new Student("doesn't matter", "doesn't matter", "", [""], new Person("Andrew Li", "andrewli06@icloud.com"), "")).catch((error: Error) => (console.error(error)));
   res.json({api: true});
 });
 
@@ -39,6 +41,7 @@ router.route("/schools/add").post((req: Request, res: Response) => {
 
     dbConnect.collection("schools").insertOne(school, (err: Error, resp: Response) => {
         if (err) throw err;
+        sendSchoolReceipt(school);
         res.json({response: resp, code});
     });
 });
@@ -50,7 +53,19 @@ router.route("/schools/:code").get((req: Request, res: Response) => {
     .collection("schools")
     .findOne(query, (err: Error, result: Response) => {
         if (err) throw err;
-        res.json(result)
+        res.json(result);
+    });
+});
+
+router.route("/schools/sendcode/:code").get((req: Request, res: Response) => {
+    const dbConnect = dbo.getDb();
+    const query = { code: req.params.code };
+    dbConnect
+    .collection("schools")
+    .findOne(query, (err: Error, result: Response) => {
+        if (err) throw err;
+        sendSchoolCodeEmail(School.fromJson(result));
+        res.json({success: true, school: School.fromJson(result)});
     });
 });
 
@@ -75,6 +90,8 @@ router.route("/students/add").post(async (req: Request, res: Response) => {
 
     dbConnect.collection("students").insertOne(student, (err: Error, resp: Response) => {
         if (err) throw err;
+
+        sendRegistrationEmail(student);
         res.json({response: resp});
     });
 });
