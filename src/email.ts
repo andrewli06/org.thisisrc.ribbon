@@ -9,7 +9,7 @@ dotenv.config();
 const [username, password]: [string, string] = [process.env.EMAIL_USERNAME || "", process.env.EMAIL_PASSWORD || ""];
 
 // email account
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
     host: "smtp.mxhichina.com",
     port: 465,
     secure: true,
@@ -30,7 +30,6 @@ export const sendSchoolReceipt = async (data: School) => { // sends receipt of t
     }).then(() => {
         return 1;
     }).catch((error: Error) => {
-        console.error(error);
         return -1;
     });
 }
@@ -42,11 +41,11 @@ export const sendSchoolCodeEmail = async (school: School) => { // sends school c
         cc: `"Research Conference" <${process.env.EMAIL_USERNAME}>`,
         subject: "THIS ISRC - Payment Received", // Subject line
         html: `<div style="font-family: sans-serif"><p>Dear ${school.contact.name},</p>
-        
+
             <p>We have received your payment for the 2022 Tsinghua International School Research Conference. Your students can now register. Your school code for registration purposes is</p>
             <b style="font-size: 4rem, font-weight: 800">${school.code}</b>
             <p>Feel free to reach out if you have any questions!</p>
-            
+
             <p>Sincerely,<br/>Tsinghua International School</p></div>
         `, // html body
     }).then(() => {
@@ -86,13 +85,12 @@ const onError = async (error: Error, timestamp: Date, targetEmail: string) => {
     }).then(() => {
         return 1;
     }).catch((e: Error) => {
-        console.error(e);
         return -1;
     });
 }
 
 module.exports = {
-    sendSchoolReceipt: sendSchoolReceipt,
-    sendSchoolCodeEmail: sendSchoolCodeEmail,
-    sendRegistrationEmail: sendRegistrationEmail
+    sendSchoolReceipt,
+    sendSchoolCodeEmail,
+    sendRegistrationEmail
 }

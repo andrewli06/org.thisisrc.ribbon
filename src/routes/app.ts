@@ -14,11 +14,6 @@ const genCode = () => {
     return `${letters[Math.floor(Math.random()*27)]}${letters[Math.floor(Math.random()*27)]}${letters[Math.floor(Math.random()*27)]}-${numbers[Math.floor(Math.random()*18)]}${numbers[Math.floor(Math.random()*18)]}${numbers[Math.floor(Math.random()*18)]}`;
 }
 
-router.route("/api/test").get((req: Request, res: Response) => {
-    sendRegistrationEmail(new Student("doesn't matter", "doesn't matter", "", [""], new Person("Andrew Li", "andrewli06@icloud.com"), "")).catch((error: Error) => (console.error(error)));
-  res.json({api: true});
-});
-
 // schools
 router.route("/schools/add").post((req: Request, res: Response) => {
     const dbConnect = dbo.getDb();
@@ -32,8 +27,8 @@ router.route("/schools/add").post((req: Request, res: Response) => {
 
     const school: School = {
         name: req.body.name,
-        contact: contact,
-        code: code,
+        contact,
+        code,
         count: 0,
         capacity: 10,
         students: []
