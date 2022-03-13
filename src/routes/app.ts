@@ -4,7 +4,6 @@ import School from "../models/school";
 import Person from "../models/person";
 import conn from "../db/conn";
 import { sendRegistrationEmail, sendSchoolReceipt, sendSchoolCodeEmail } from "../email";
-import Pronoun from "../models/pronoun";
 
 const router = express.Router();
 const dbo = conn;
@@ -23,7 +22,7 @@ router.route("/schools/add").post((req: Request, res: Response) => {
     const contact: Person = {
         name: req.body.contact_name,
         email: req.body.contact_email,
-        pronouns: req.body.pronouns || new Pronoun(['they', 'them', 'theirs']),
+        pronouns: req.body.pronouns || "they/them/theirs",
         position: req.body.contact_position
     }
 
@@ -73,7 +72,7 @@ router.route("/students/add").post(async (req: Request, res: Response) => {
     const id: Person = {
         name: req.body.contact_name,
         email: req.body.contact_email,
-        pronouns: req.body.pronouns || new Pronoun(['they', 'them', 'theirs'])
+        pronouns: req.body.pronouns || "they/them/theirs"
     }
 
     const student: Student = {

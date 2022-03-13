@@ -1,6 +1,6 @@
-export default class Pronoun {
+export default class Pronoun { // This class exists but remains UNUSED
     constructor (
-        public pronouns: Array<string>
+        public pronouns: string[]
     ) {}
 
     public returnPronouns = () => {
