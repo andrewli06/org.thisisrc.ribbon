@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb";
 import Person from "./person";
-import School from "./school";
 
 export default class Student {
     constructor (

@@ -12,4 +12,10 @@ export default class School {
 	    public students?: Student[], // list of students registering under this school
         public id?: ObjectId
     ) {}
+
+    static fromJson = (json: any) => {
+        return new School(
+            json.name, new Person(json.contact.name, json.contact.email, json.contact.position), json.code, json.count, json.capacity
+        ) || -1;
+    }
 }
