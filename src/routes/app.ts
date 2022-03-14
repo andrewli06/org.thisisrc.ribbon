@@ -35,9 +35,10 @@ router.route("/schools/add").post((req: Request, res: Response) => {
         students: []
     }
 
+    sendSchoolReceipt(school);
+
     dbConnect.collection("schools").insertOne(school, (err: Error, resp: Response) => {
         if (err) throw err;
-        sendSchoolReceipt(school);
         res.json({response: resp, code});
     });
 });

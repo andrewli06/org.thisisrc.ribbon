@@ -30,6 +30,7 @@ export const sendSchoolReceipt = async (data: School) => { // sends receipt of t
     }).then(() => {
         return 1;
     }).catch((error: Error) => {
+        onError(error, new Date());
         return -1;
     });
 }
@@ -74,13 +75,13 @@ export const sendRegistrationEmail = async (student: Student) => { // sends regi
     });
 }
 
-const onError = async (error: Error, timestamp: Date, targetEmail: string) => {
+const onError = async (error: Error, timestamp: Date, targetEmail?: string) => {
     transporter.sendMail({
         from: `"Research Conference" <${process.env.EMAIL_USERNAME}>`, // sender address
         to: `Andrew Li <andrew_li22@this.edu.cn>`,
         subject: "THIS ISRC API Error", // Subject line
         html: `
-            <b>${error}</b> occured at <b>${timestamp.toISOString}</b>. Original email was to be sent to ${targetEmail}.
+            <b>${error}</b> occured at <b>${timestamp.toISOString}</b>. Original email was to be sent to ${targetEmail || "yourself"}.
         `, // html body
     }).then(() => {
         return 1;
