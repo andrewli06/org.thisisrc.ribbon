@@ -21,6 +21,7 @@ export const sendSchoolReceipt = async (data: School) => { // sends receipt of t
     transporter.sendMail({
         from: `"Research Conference" <${process.env.EMAIL_USERNAME}>`, // sender address
         to: `"Research Conference" <${process.env.EMAIL_USERNAME}>`, // list of receivers
+        cc: process.env.EMAIL_CC,
         subject: `New Form Submission from ${data.name}`, // Subject line
         html: `<b>New Form Submission. Below are the contents of the form:</b>
             <p>School Name: ${data.name}</p>
