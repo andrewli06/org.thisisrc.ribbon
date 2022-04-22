@@ -76,6 +76,22 @@ export const sendRegistrationEmail = async (student: Student) => { // sends regi
     });
 }
 
+export const sendStudentReceipt = async (student: Student) => {
+  transporter.sendMail({
+        from: `"Research Conference" <${process.env.EMAIL_USERNAME}>`, // sender address
+        to: `"Research Conference" <${process.env.EMAIL_USERNAME}>`, // list of receivers
+        cc: process.env.EMAIL_CC,
+        subject: `New Form Submission`, // Subject line
+        html: `<b>New Form Submission. Until the backend is formally fixed, please check the database manually.</p>
+        `, // html body
+    }).then(() => {
+        return 1;
+    }).catch((error: Error) => {
+        onError(error, new Date());
+        return -1;
+    });
+}
+
 const onError = async (error: Error, timestamp: Date, targetEmail?: string) => {
     transporter.sendMail({
         from: `"Research Conference" <${process.env.EMAIL_USERNAME}>`, // sender address
@@ -94,5 +110,6 @@ const onError = async (error: Error, timestamp: Date, targetEmail?: string) => {
 module.exports = {
     sendSchoolReceipt,
     sendSchoolCodeEmail,
-    sendRegistrationEmail
+    sendRegistrationEmail,
+    sendStudentReceipt
 }

@@ -3,7 +3,7 @@ import Student from "../models/student";
 import School from "../models/school";
 import Person from "../models/person";
 import conn from "../db/conn";
-import { sendRegistrationEmail, sendSchoolReceipt, sendSchoolCodeEmail } from "../email";
+import { sendRegistrationEmail, sendSchoolReceipt, sendSchoolCodeEmail, sendStudentReceipt } from "../email";
 
 const router = express.Router();
 const dbo = conn;
@@ -87,8 +87,9 @@ router.route("/students/add").post(async (req: Request, res: Response) => {
 
     dbConnect.collection("students").insertOne(student, (err: Error, resp: Response) => {
         if (err) throw err;
-
-        sendRegistrationEmail(student);
+        
+        sendStudentReceipt(student);
+        //sendRegistrationEmail(student);
         res.json({response: resp});
     });
 });
