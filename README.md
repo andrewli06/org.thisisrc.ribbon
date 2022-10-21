@@ -1,5 +1,5 @@
-# Ribbon
-Ribbon is the codename for the API used on [www.thisisrc.org]thisisrc.org. Ribbon is written in Express using TypeScript.
+# THISISRC Backend
+API used on [www.thisisrc.org]thisisrc.org. Written in Express using TypeScript.
 
 ## Routes
 
